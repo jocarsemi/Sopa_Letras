@@ -1,107 +1,107 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sopa de Letras de Tecnología</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .sopa {
-            display: grid;
-            grid-template-columns: repeat(20, 30px);
-            grid-gap: 5px;
-        }
-        .sopa div {
-            width: 30px;
-            height: 30px;
-            border: 1px solid #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }
-        .sopa .hidden {
-            background-color: #eee;
-        }
-        .resultados {
-            margin-top: 20px;
-        }
-    </style>
-</head>
-<body>
-    <h1>Sopa de Letras de Tecnología</h1>
-    <div class="sopa" id="sopa"></div>
-    <div class="resultados" id="resultados"></div>
+ <html lang="es">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Sopa de Letras de Tecnología</title>
+     <style>
+         body {
+             font-family: Arial, sans-serif;
+         }
+         .sopa {
+             display: grid;
+             grid-template-columns: repeat(20, 30px);
+             grid-gap: 5px;
+         }
+         .sopa div {
+             width: 30px;
+             height: 30px;
+             border: 1px solid #000;
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             cursor: pointer;
+         }
+         .sopa .hidden {
+             background-color: #eee;
+         }
+         .resultados {
+             margin-top: 20px;
+         }
+     </style>
+ </head>
+ <body>
+     <h1>Sopa de Letras de Tecnología</h1>
+     <div class="sopa" id="sopa"></div>
+     <div class="resultados" id="resultados"></div>
 
-    <script>
-        const sopa = document.getElementById('sopa');
-        const resultados = document.getElementById('resultados');
-        const palabras = [
-            { palabra: 'DISIPADOR', categoria: 'Componentes electrónicos' },
-            { palabra: 'CHIPSET', categoria: 'Componentes electrónicos' },
-            { palabra: 'NORTHBRIDGE', categoria: 'Componentes electrónicos' },
-            { palabra: 'NVME', categoria: 'Memorias' },
-            { palabra: 'DDR5', categoria: 'Memorias' },
-            { palabra: 'GPU', categoria: 'Procesadores' },
-            { palabra: 'CONDENSADOR', categoria: 'Componentes electrónicos' },
-            { palabra: 'RAM', categoria: 'Memorias' },
-            { palabra: 'CPU', categoria: 'Procesadores' },
-            { palabra: 'TECNOLOGIA', categoria: 'General' },
-            { palabra: 'PROGRAMA', categoria: 'General' },
-            { palabra: 'SOFTWARE', categoria: 'General' },
-            { palabra: 'ALGORITMO', categoria: 'General' },
-            { palabra: 'ALMACENAMIENTO', categoria: 'Memorias' },
-            { palabra: 'REDES', categoria: 'General' },
-            { palabra: 'ETHERNET', categoria: 'Redes' },
-            { palabra: 'WIFI', categoria: 'Redes' },
-            { palabra: 'INTERNET', categoria: 'Redes' },
-            { palabra: 'NAVEGADOR', categoria: 'General' },
-            { palabra: 'SISTEMA', categoria: 'General' }
-        ];
-        const tablero = Array(20).fill().map(() => Array(20).fill(''));
+     <script>
+         const sopa = document.getElementById('sopa');
+         const resultados = document.getElementById('resultados');
+         const palabras = [
+             { palabra: 'DISIPADOR', categoria: 'Componentes electrónicos' },
+             { palabra: 'CHIPSET', categoria: 'Componentes electrónicos' },
+             { palabra: 'NORTHBRIDGE', categoria: 'Componentes electrónicos' },
+             { palabra: 'NVME', categoria: 'Memorias' },
+             { palabra: 'DDR5', categoria: 'Memorias' },
+             { palabra: 'GPU', categoria: 'Procesadores' },
+             { palabra: 'CONDENSADOR', categoria: 'Componentes electrónicos' },
+             { palabra: 'RAM', categoria: 'Memorias' },
+             { palabra: 'CPU', categoria: 'Procesadores' },
+             { palabra: 'TECNOLOGIA', categoria: 'General' },
+             { palabra: 'PROGRAMA', categoria: 'General' },
+             { palabra: 'SOFTWARE', categoria: 'General' },
+             { palabra: 'ALGORITMO', categoria: 'General' },
+             { palabra: 'ALMACENAMIENTO', categoria: 'Memorias' },
+             { palabra: 'REDES', categoria: 'General' },
+             { palabra: 'ETHERNET', categoria: 'Redes' },
+             { palabra: 'WIFI', categoria: 'Redes' },
+             { palabra: 'INTERNET', categoria: 'Redes' },
+             { palabra: 'NAVEGADOR', categoria: 'General' },
+             { palabra: 'SISTEMA', categoria: 'General' }
+         ];
+         const tablero = Array(20).fill().map(() => Array(20).fill(''));
 
-        function generarSopa() {
-            sopa.innerHTML = '';
-            tablero.forEach((row, i) => {
-                row.forEach((cell, j) => {
-                    sopa.innerHTML += `<div data-i="${i}" data-j="${j}"></div>`;
-                });
-            });
+         function generarSopa() {
+             sopa.innerHTML = '';
+             tablero.forEach((row, i) => {
+                 row.forEach((cell, j) => {
+                     sopa.innerHTML += `<div data-i="${i}" data-j="${j}"></div>`;
+                 });
+             });
 
-            palabras.forEach(palabra => {
-                let dir = Math.random() < 0.5 ? 1 : -1;
-                let start = Math.random() * (20 - palabra.palabra.length) | 0;
-                for (let i = 0; i < palabra.palabra.length; i++) {
-                    tablero[start + dir * i][start + dir * i] = palabra.palabra[i];
-                }
-            });
+             palabras.forEach(palabra => {
+                 let dir = Math.random() < 0.5 ? 1 : -1;
+                 let start = Math.random() * (20 - palabra.palabra.length) | 0;
+                 for (let i = 0; i < palabra.palabra.length; i++) {
+                     tablero[start + dir * i][start + dir * i] = palabra.palabra[i];
+                 }
+             });
 
-            document.querySelectorAll('.sopa div').forEach(div => {
-                div.addEventListener('click', () => {
-                    div.classList.toggle('hidden');
-                });
-            });
-        }
+             document.querySelectorAll('.sopa div').forEach(div => {
+                 div.addEventListener('click', () => {
+                     div.classList.toggle('hidden');
+                 });
+             });
+         }
 
-        function mostrarResultados() {
-            resultados.innerHTML = '';
-            palabras.forEach(palabra => {
-                const encontrado = document.querySelectorAll('.sopa div').some(div => {
-                    return div.textContent === palabra.palabra && !div.classList.contains('hidden');
-                });
-                const row = document.createElement('div');
-                row.textContent = `${palabra.palabra}: ${encontrado ? 'Encontrado' : 'No encontrado'} - ${palabra.categoria}`;
-                resultados.appendChild(row);
-            });
-        }
+         function mostrarResultados() {
+             resultados.innerHTML = '';
+             palabras.forEach(palabra => {
+                 const encontrado = document.querySelectorAll('.sopa div').some(div => {
+                     return div.textContent === palabra.palabra && !div.classList.contains('hidden');
+                 });
+                 const row = document.createElement('div');
+                 row.textContent = `${palabra.palabra}: ${encontrado ? 'Encontrado' : 'No encontrado'} - ${palabra.categoria}`;
+                 resultados.appendChild(row);
+             });
+         }
 
-        generarSopa();
+         generarSopa();
 
-        document.getElementById('sopa').addEventListener('click', () => {
-            mostrarResultados();
-        });
-    </script>
-</body>
-</html>
+         document.getElementById('sopa').addEventListener('click', () => {
+             mostrarResultados();
+         });
+     </script>
+ </body>
+ </html>
